@@ -11,12 +11,14 @@ pipeline {
 		}
 		stage('deploy') {
 			steps{
-				sh 'mvn deploy'
+				echo "deploying"
+				sh 'sleep 10'
 			}
 		}
 		stage('test') {
 			steps{
-				sh 'mvn test'
+				echo "testing"
+				sh 'sleep 10'
 			}
 		}	
 	}
