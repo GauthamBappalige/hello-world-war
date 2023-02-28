@@ -3,25 +3,12 @@ pipeline {
 	tools {
 		maven "maven3"
 	}
-
-		stage('Build'){
+	stages{
+		stage('Build') {
 			steps{
-				sh 'mvn install -Dskiptests'
-			}
-			post {
-				sucess {
-					echo 'now archiving it ..'
-					archiveArtifacts artifacts: '**/target/*.war'
-
-				}
+				sh 'mvn install'
 			}
 		}
-
-
-		stage('unit test'){
-			steps{
-				sh 'mvn test'
-			}
-		}
+		
 	}
 }
