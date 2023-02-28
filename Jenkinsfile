@@ -1,14 +1,8 @@
 pipeline {
 	agent any
 	tools {
-	maven "maven3"
+		maven "maven3"
 	}
-	stages {
-		stage('Fetch code') {
-			steps {
-				git branch: 'master', url: 'https://github.com/GauthamBappalige/hello-world-war.git'
-			}
-		}
 
 		stage('Build'){
 			steps{
@@ -21,7 +15,10 @@ pipeline {
 
 				}
 			}
-			stage('unit test'){
+		}
+
+
+		stage('unit test'){
 			steps{
 				sh 'mvn test'
 			}
