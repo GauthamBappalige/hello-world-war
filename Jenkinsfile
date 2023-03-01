@@ -1,7 +1,10 @@
 pipeline {
 	agent none
+	parameters {
+  		string defaultValue: 'master', name: 'branch', trim: true
+	}
 	environment {
- 		 buildid = "envworking"
+ 		 branchname = $branch
 	}
 
 	tools {
@@ -30,7 +33,7 @@ pipeline {
 		stage('test') {
 			agent {label 'jproject'}
 			steps{
-				echo "testing $buildid"
+				echo "testing $branchname"
 				sh 'sleep 10'
 			}
 		}
