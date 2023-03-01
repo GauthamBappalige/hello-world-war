@@ -4,7 +4,7 @@ pipeline {
   		string defaultValue: 'master', name: 'branch', trim: true
 	}
 	environment {
- 		 branchname = $branch
+ 		 branchname = ${branch}
 	}
 
 	tools {
