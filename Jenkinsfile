@@ -1,5 +1,5 @@
 pipeline {
-	agent {label 'cproject'}
+	agent {label 'jproject'}
 	tools {
 		maven "maven3"
 	}
