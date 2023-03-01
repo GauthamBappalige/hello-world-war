@@ -1,5 +1,9 @@
 pipeline {
 	agent none
+	environment {
+ 		 buildid = "envworking"
+	}
+
 	tools {
 		maven "maven3"
 	}
@@ -26,7 +30,7 @@ pipeline {
 		stage('test') {
 			agent {label 'jproject'}
 			steps{
-				echo "testing"
+				echo "testing $buildid"
 				sh 'sleep 10'
 			}
 		}
