@@ -1,16 +1,18 @@
 pipeline {
-	agent {label 'jproject'}
+	agent none
 	tools {
 		maven "maven3"
 	}
 
 	stages{
 		stage('Fetch code') {
+			agent {label 'cproject'}
 			steps{
 				git branch: 'master', url: 'https://github.com/GauthamBappalige/hello-world-war.git'
 			}
 		}
 		stage('Build') {
+			agent {label 'cproject'}
 			steps{
 				sh 'mvn install'
 			}
@@ -22,6 +24,7 @@ pipeline {
 	        }
 		}
 		stage('test') {
+			agent {label 'jproject'}
 			steps{
 				echo "testing"
 				sh 'sleep 10'
