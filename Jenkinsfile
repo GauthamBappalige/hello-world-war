@@ -4,9 +4,6 @@ pipeline {
 		maven "maven3"
 	}
 
-	triggers {
-    }
-
 	stages{
 		stage('Fetch code') {
 			steps{
