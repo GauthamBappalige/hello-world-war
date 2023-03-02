@@ -86,19 +86,19 @@ pipeline {
     }
 
         post {
-        always {
-        echo "this will run always"
+            always {
+                 echo "this will run always"
         }
 
-        failure {
-        echo "this $JOB_NAME FAILED - $BUILD_NUMBER $BUILD_DISPLAY_NAME"
+             failure {
+                echo "this $JOB_NAME FAILED - $BUILD_NUMBER $BUILD_DISPLAY_NAME"
         }
 
-        success {
-        echo "this $JOB_NAME SUCCESS - $BUILD_NUMBER $BUILD_DISPLAY_NAME"
+            success {
+                 echo "this $JOB_NAME SUCCESS - $BUILD_NUMBER $BUILD_DISPLAY_NAME"
         }
-        unstable {
-
+            unstable {
+                echo "this $JOB_NAME UNSTABLE - $BUILD_NUMBER $BUILD_DISPLAY_NAME"
         }
-        }
+    }
 }        
