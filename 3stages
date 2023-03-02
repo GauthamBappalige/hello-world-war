@@ -6,7 +6,7 @@ pipeline {
             steps{
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     print "Stage A"
-                    sh "exit 0"
+                    sh "exit 1"
                     script { stage_result = true }
                 }
             }    
@@ -28,6 +28,13 @@ pipeline {
             steps{
                 print "EXECUTING: Stage C STAGE_A_RESULT: ${stage_result}"
             }    
+        }
+    }
+    post {
+        always {
+            emailext body: "Pipeline finished: \n\n${currentBuild.fullDisplayName}\n\n${env.BUILD_URL}",
+                     subject: "${currentBuild.fullDisplayName} - ${currentBuild.result}",
+                     to: "gauthambshetty12@gmail.com.com"
         }
     }
 }
