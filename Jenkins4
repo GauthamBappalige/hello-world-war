@@ -5,44 +5,44 @@ pipeline {
     }
 
     stages {
-    stage('multiple stage') {
-        parallel {
-            stage(build1) {
-                steps {
-                    sh '''
-                    echo "build1"
-                    '''
+        stage('multiple stage') {
+            parallel {
+                stage(build1) {
+                    steps {
+                        sh '''
+                        echo "build1"
+                        '''
+                    }
                 }
-            }
 
-            stage(build2) {
-                steps {
-                    sh '''
-                    echo "build1"
-                    '''
-                }
-            }        
+                stage(build2) {
+                    steps {
+                        sh '''
+                        echo "build1"
+                        '''
+                    }
+                }        
+            }
         }
-    }
         
 
-    stage('deploy') {
-            steps {
-                sh '''
-                echo "practice"
-                sleep 3
-                '''
+        stage('deploy') {
+                steps {
+                    sh '''
+                    echo "practice"
+                    sleep 3
+                    '''
+                }
             }
-        }
-    }
+    
 
-    stage('Test') {
-            steps {
-                sh '''
-                echo "practice"
-                sleep 3
-                '''
+        stage('Test') {
+                steps {
+                    sh '''
+                    echo "practice"
+                    sleep 3
+                    '''
+                }
             }
-        }
     }
 }
