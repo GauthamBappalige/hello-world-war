@@ -1,10 +1,9 @@
 def boolean stage_result = false
-
 pipeline {
     agent any 
     stages {
         stage('A') {
-            steps {
+            steps{
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     print "Stage A"
                     sh "exit 1"
@@ -13,20 +12,20 @@ pipeline {
             }    
         }
 
-        stage('B') {
+        stage('B'){
             when { 
-                expression { stage_result == true }
+                expression{ stage_result == true }
             }    
-            steps {
+            steps{
                 print "EXECUTING: Stage B STAGE_A_RESULT: ${stage_result}"
             }    
         }
 
-        stage('C') {
+        stage('C'){
             when { 
-                expression { stage_result == false }
+                expression{ stage_result == false }
             }    
-            steps {
+            steps{
                 print "EXECUTING: Stage C STAGE_A_RESULT: ${stage_result}"
             }    
         }
