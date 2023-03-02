@@ -39,10 +39,12 @@ pipeline {
 
                 stage(deploy2) {
                     steps {
+                         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                         sh '''
                         echo "deploy1"
                         sleep 2
                         '''
+                         }
                     }
                 }    
 
@@ -62,9 +64,11 @@ pipeline {
             parallel {
                 stage(test1) {
                     steps {
+                         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                         sh '''
                         echo "test1"
                         '''
+                         }
                     }    
                 }
                 stage(test2) {
