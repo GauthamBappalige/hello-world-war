@@ -32,6 +32,7 @@ pipeline {
     }
     post {
         always {
+            deploy adapters: [tomcat9(credentialsId: '04b7f985-da84-4685-a3b1-a90338587954', path: '', url: 'http://3.238.27.246:9090/')], contextPath: 'helloworldwar', war: '**/*.war'
             emailext body: "Pipeline finished: \n\n${currentBuild.fullDisplayName}\n\n${env.BUILD_URL}",
                      subject: "${currentBuild.fullDisplayName} - ${currentBuild.result}",
                      to: "gauthambshetty12@gmail.com"
