@@ -84,21 +84,21 @@ pipeline {
             
         }
     }
-}
 
-post {
-    always {
+        post {
+        always {
         echo "this will run always"
-    }
+        }
 
-    failure {
+        failure {
         echo "this $JOB_NAME FAILED - $BUILD_NUMBER $BUILD_DISPLAY_NAME"
-    }
+        }
 
-    success {
+        success {
         echo "this $JOB_NAME SUCCESS - $BUILD_NUMBER $BUILD_DISPLAY_NAME"
-    }
-    unstable {
+        }
+        unstable {
 
-    }
-}
+        }
+        }
+}        
