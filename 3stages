@@ -34,7 +34,7 @@ pipeline {
         always {
             emailext body: "Pipeline finished: \n\n${currentBuild.fullDisplayName}\n\n${env.BUILD_URL}",
                      subject: "${currentBuild.fullDisplayName} - ${currentBuild.result}",
-                     to: "gauthambshetty12@gmail.com.com"
+                     to: "gauthambappalige@gmail.com"
         }
     }
 }
