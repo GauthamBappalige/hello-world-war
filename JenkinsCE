@@ -1,0 +1,82 @@
+pipeline {
+    agent any
+    parameters {
+        credentials credentialType: 'com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl', defaultValue: '', name: 'gautham', required: false
+    }
+
+    stages {
+        stage('multiple stage') {
+            parallel {
+                stage(build1) {
+                    steps {
+                        sh '''
+                        echo "build1"
+                        exit 1
+                        '''
+                    }
+                }
+
+                stage(build2) {
+                    steps {
+                        sh '''
+                        echo "build1"
+                        '''
+                    }
+                }        
+            }
+        }
+        
+
+        stage('deploy') {
+            parallel {
+                stage(deploy1) {
+                    steps {
+                        sh '''
+                        echo "deploy1"
+                        sleep 2
+                        '''
+                    }
+                } 
+
+                stage(deploy2) {
+                    steps {
+                        sh '''
+                        echo "deploy1"
+                        sleep 2
+                        '''
+                    }
+                }    
+
+                stage(deploy3) {
+                    steps {
+                        sh '''
+                        echo "deploy1"
+                        sleep 2
+                        '''
+                    }
+                }       
+            }
+        }
+
+
+        stage('multiple Test') {
+            parallel {
+                stage(test1) {
+                    steps {
+                        sh '''
+                        echo "test1"
+                        '''
+                    }    
+                }
+                stage(test2) {
+                    steps {
+                        sh '''
+                        echo "test2"
+                        '''
+                    }    
+                }
+            }
+            
+        }
+    }
+}
