@@ -15,6 +15,10 @@ pipeline {
 	stages{
 		stage('Fetch code') {
 			agent {label 'cproject'}
+            when {
+            branch 'master'
+            }
+
 			steps{
 				git branch: 'master', url: 'https://github.com/GauthamBappalige/hello-world-war.git'
 			}
