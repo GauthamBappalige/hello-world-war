@@ -1,0 +1,33 @@
+pipeline {
+    agent none
+    stages {
+    stage('build') {
+            steps {
+                sh '''
+                echo "practice"
+                sleep 3
+                '''
+            }
+        }
+    }
+
+    stage('deploy') {
+            steps {
+                sh '''
+                echo "practice"
+                sleep 3
+                '''
+            }
+        }
+    }
+
+    stage('Test') {
+            steps {
+                sh '''
+                echo "practice"
+                sleep 3
+                '''
+            }
+        }
+    }
+}
