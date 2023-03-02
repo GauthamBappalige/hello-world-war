@@ -1,0 +1,104 @@
+pipeline {
+    agent any
+  
+    stages {
+        stage('multiple stage') {
+            parallel {
+                stage(build1) {
+                    steps {
+                        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        sh '''
+                        echo "build1"
+                        exit 1
+                        '''
+                        }
+                    }
+                }
+
+                stage(build2) {
+                    steps {
+                        sh '''
+                        echo "build1"
+                        '''
+                    }
+                }        
+            }
+        }
+        
+
+        stage('deploy') {
+            parallel {
+                stage(deploy1) {
+                    steps {
+                        sh '''
+                        echo "deploy1"
+                        sleep 2
+                        '''
+                    }
+                } 
+
+                stage(deploy2) {
+                    steps {
+                         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        sh '''
+                        echo "deploy1"
+                        sleep 2
+                        exit1
+                        '''
+                         }
+                    }
+                }    
+
+                stage(deploy3) {
+                    steps {
+                        sh '''
+                        echo "deploy1"
+                        sleep 2
+                        '''
+                    }
+                }       
+            }
+        }
+
+
+        stage('multiple Test') {
+            parallel {
+                stage(test1) {
+                    steps {
+                         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        sh '''
+                        echo "test1"
+                        exit 1
+                        '''
+                         }
+                    }    
+                }
+                stage(test2) {
+                    steps {
+                        sh '''
+                        echo "test2"
+                        '''
+                    }    
+                }
+            }
+            
+        }
+    }
+}
+
+post {
+    always {
+        echo "this will run always"
+    }
+
+    failure {
+        echo "this $JOB_NAME FAILED - $BUILD_NUMBER $BUILD_DISPLAY_NAME"
+    }
+
+    success {
+        echo "this $JOB_NAME SUCCESS - $BUILD_NUMBER $BUILD_DISPLAY_NAME"
+    }
+    unstable {
+
+    }
+}
