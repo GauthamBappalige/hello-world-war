@@ -27,22 +27,55 @@ pipeline {
         
 
         stage('deploy') {
-                steps {
-                    sh '''
-                    echo "practice"
-                    sleep 3
-                    '''
-                }
-            }
-    
+            parallel {
+                stage(deploy1) {
+                    steps {
+                        sh '''
+                        echo "deploy1"
+                        sleep 2
+                        '''
+                    }
+                } 
 
-        stage('Test') {
-                steps {
-                    sh '''
-                    echo "practice"
-                    sleep 3
-                    '''
+                stage(deploy2) {
+                    steps {
+                        sh '''
+                        echo "deploy1"
+                        sleep 2
+                        '''
+                    }
+                }    
+
+                stage(deploy3) {
+                    steps {
+                        sh '''
+                        echo "deploy1"
+                        sleep 2
+                        '''
+                    }
+                }       
+            }
+        }
+
+
+        stage('multiple Test') {
+            parallel {
+                stage(test1) {
+                    steps {
+                        sh '''
+                        echo "test1"
+                        '''
+                    }    
+                }
+                stage(test2) {
+                    steps {
+                        sh '''
+                        echo "test2"
+                        '''
+                    }    
                 }
             }
+            
+        }
     }
 }
