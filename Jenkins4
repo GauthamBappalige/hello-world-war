@@ -5,15 +5,26 @@ pipeline {
     }
 
     stages {
-    stage('build') {
-            steps {
-                sh '''
-                echo "practice"
-                sleep 3
-                '''
+    stage('multiple stage') {
+        parallel {
+            stage(build1) {
+                steps {
+                    sh '''
+                    echo "build1"
+                    '''
+                }
             }
+
+            stage(build2) {
+                steps {
+                    sh '''
+                    echo "build1"
+                    '''
+                }
+            }        
         }
     }
+        
 
     stage('deploy') {
             steps {
