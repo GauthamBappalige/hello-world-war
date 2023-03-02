@@ -1,9 +1,6 @@
 pipeline {
     agent any
-    parameters {
-        credentials credentialType: 'com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl', defaultValue: '', name: 'gautham', required: false
-    }
-
+  
     stages {
         stage('multiple stage') {
             parallel {
