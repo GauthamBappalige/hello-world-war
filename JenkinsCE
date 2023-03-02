@@ -43,6 +43,7 @@ pipeline {
                         sh '''
                         echo "deploy1"
                         sleep 2
+                        exit1
                         '''
                          }
                     }
@@ -67,6 +68,7 @@ pipeline {
                          catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                         sh '''
                         echo "test1"
+                        exit 1
                         '''
                          }
                     }    
