@@ -15,7 +15,7 @@ pipeline {
                 branch 'test'
             }
             steps{
-                sh "echo STEGE-2 executes if branch is master"
+                sh "echo STEGE-2 executess if branch is master"
             }
         }
     }
