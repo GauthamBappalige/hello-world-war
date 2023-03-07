@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        parallel {
+            stage('build') {
+                sh '''
+                echo "its a build phase"
+                '''
+            }
+            stage('test') {
+                        sh '''
+                        echo "its a test phase"
+                        '''
+            }
+            stage('deploy') {
+                        sh '''
+                        echo "its a deploy phase"
+                        '''
+            }
+        }
+    }
+}
