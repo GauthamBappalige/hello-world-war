@@ -5,9 +5,12 @@ pipeline {
             parallel {
                 stage('build') {
                     steps {
-                        sh '''
-                        echo "its a build phase"
-                        '''
+                        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                            sh '''
+                            echo "its a build phase"
+                            exit 1
+                            '''
+                        }
                     }
                 }
                 stage('test') {
