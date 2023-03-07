@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+     		 branchname = helloenv
+    	}
     stages {
         stage('multiple stages') {
             parallel {
@@ -7,7 +10,7 @@ pipeline {
                     steps {
                         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                             sh '''
-                            echo "its a build phase"
+                            echo "its a build phase $branchname"
                             exit 1
                             '''
                         }
