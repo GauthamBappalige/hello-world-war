@@ -14,7 +14,7 @@ pipeline {
             }
             stage('deploy') {
                         sh '''
-                        echo "its a deploy phase"
+                        echo "it a deploy phase"
                         '''
             }
         }

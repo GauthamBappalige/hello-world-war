@@ -18,7 +18,7 @@ pipeline {
                 stage(build2) {
                     steps {
                         sh '''
-                        echo "build123"
+                        echo "build23"
                         '''
                     }
                 }        
