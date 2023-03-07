@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-     		 branchname = helloenv
+     		 branchname = "helloenv"
     	}
     stages {
         stage('multiple stages') {
